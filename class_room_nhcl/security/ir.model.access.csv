@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_class_facilities,class.facilities,model_class_facilities,,1,1,1,1
+access_class_room,class.room,model_class_room,,1,1,1,1
+access_class_room_facilities,class.room.facilities,model_class_room_facilities,,1,1,1,1
+access_class_room_asserts,class.room.asserts,model_class_room_asserts,,1,1,1,1

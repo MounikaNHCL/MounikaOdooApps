@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="class_facilities_tree" model="ir.ui.view">
+        <field name="name">class.facilities.tree</field>
+        <field name="model">class.facilities</field>
+        <field name="arch" type="xml">
+            <tree editable="bottom">
+                <field name="name"/>
+                <field name="company_id"/>
+            </tree>
+        </field>
+    </record>
+    <record id="action_class_facilities" model="ir.actions.act_window">
+        <field name="name">Class Facilities</field>
+        <field name="res_model">class.facilities</field>
+        <field name="view_mode">tree</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a Class Room Facilities
+            </p>
+        </field>
+    </record>
+    <menuitem id="class_room_root" web_icon="class_room_nhcl,static/description/icon.png"
+              name="Class Room"
+              sequence="40"
+    />
+    <menuitem id="menu_class_room_config"
+              name="Configuration"
+              parent="class_room_nhcl.class_room_root"
+              sequence="3" action="action_class_facilities"
+    />
+
+    <!--#################################################################################-->
+
+</odoo>
