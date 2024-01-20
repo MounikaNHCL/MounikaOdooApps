@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="report_app_click_record" model="ir.actions.report">
+        <field name="name">Reporting PDF</field>
+        <field name="model">report.app.click</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">reporting_app.reporting_app_template</field>
+        <field name="report_file">reporting_app.reporting_app_template</field>
+        <field name="print_report_name">"Report - %s" % object.title</field>
+        <field name="binding_model_id" ref="reporting_app.model_report_app_click"/>
+        <field name="binding_type">report</field>
+    </record>
+</odoo>

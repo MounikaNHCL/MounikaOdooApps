@@ -1,0 +1,20 @@
+{
+    'name': 'PASSWORD APP',
+    'summary': '''PASSWORD APP''',
+    'description': '''PASSWORD APP''',
+    'version': '16.1.0.1.1',
+    'images': ['static/description/icon.png'],
+    'company': '',
+    'author': 'Mounika',
+    'website': "",
+    'depends': ['base','hr','base_setup'],
+    'data': [
+        'security/ir.model.access.csv',
+        'security/security_groups.xml',
+        'views/password_view.xml',
+            ],
+    'application': False,
+    "auto_install": False,
+    'installable': True,
+    "external_dependencies": {"python": [], "bin": []},
+}

@@ -1,0 +1,45 @@
+.pt-5 .py-5 {
+padding-top:3rem !important;
+}
+.ml-auto .mx-auto {
+margin-left:auto !important;
+}
+
+.mon-hidden{
+display:none;
+
+}
+.mon-section-border {
+border:2px solid black;
+border-radius:15px;
+
+}
+
+.mon-section {
+margin-bottom:1px;
+padding:5px;
+
+}
+
+.mon-section {
+
+margin-top:10px;
+}
+
+.mon-text-center{
+text-align:center;
+
+}
+
+.mon-main-info-section{
+font-size:80%;
+font-weight:15px;
+
+}
+
+.mon-table-section{
+padding:0px;
+font-size:80%;
+
+}
+

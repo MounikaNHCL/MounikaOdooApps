@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="customs_internal_layout">
+        <t t-if="not o" t-set="o" t-value="doc"/>
+
+        <t t-if="not company">
+            <!-- Multicompany -->
+            <t t-if="company_id">
+                <t t-set="company" t-value="company_id"/>
+            </t>
+            <t t-elif="o and 'company_id' in o and o.company_id.sudo()">
+                <t t-set="company" t-value="o.company_id.sudo()"/>
+            </t>
+            <t t-else="else">
+                <t t-set="company" t-value="res_company"/>
+            </t>
+        </t>
+
+        <div class="header">
+            <div class="row" style="width=100%;border-bottom: 1px solid #0d0c0c">
+                <!--                style='width=100%;border-bottom: 2px solid #f4a460;padding-top:10px;'-->
+                <div class="col-6">
+                    <img align="left" t-att-src="image_data_uri(company.logo)" alt="Logo"
+                         style="max-width: 100px; max-height: 100px;"/>
+                </div>
+                <div class="col-6" style="text-align:right">
+                    <span t-esc="company.name"/>
+                    <br/>
+                    <span t-esc="company.zip"/> &amp;nbsp;&amp;nbsp;<span t-esc="company.street"/>
+                    <br/>
+                    <!--                    <span t-esc="company.street2"/><br/>-->
+                    <span t-esc="company.city"/>
+                    <br/>
+                    <span t-esc="company.state_id.name"/>
+                    <br/>
+                    <t t-if="company.vat">
+                    <span t-esc="company.vat"/>
+                    <br/>
+                    </t>
+                    <span t-esc="company.country_id.name"/>
+                </div>
+            </div>
+        </div>
+        <div class="article" t-att-data-oe-model="o and o._name" t-att-data-oe-id="o and o.id"
+             t-att-data-oe-lang="o and o.env.context.get('lang')">
+            <t t-out="0"/>
+        </div>
+        <div t-attf-class="footer o_standard_footer o_company_#{company.id}_layout">
+            <div class="text-center" style="border-top: 1px solid black;">
+                <ul class="list-inline mb4">
+                    <div t-field="company.report_footer"/>
+                </ul>
+
+                <div t-if="report_type == 'pdf'" class="text-muted">
+                    Page:
+                    <span class="page"/>
+                    /
+                    <span class="topage"/>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <template id="call_reporting_report">
+        <t t-call="reporting_app.customs_internal_layout">
+            <div class="page">
+            <div class="row">
+                <div class="col-12">
+                    <table class="table-striped table table-bordered" style="border:1px solid black;">
+                        <tr style="font-size:14px;font-weight:700;">
+                            <th>S.No</th>
+                            <th>Date</th>
+                            <th>Timesheet</th>
+                            <th>Project</th>
+                            <th>Task</th>
+                            <th>Hours</th>
+                        </tr>
+                       <t t-set="i" t-value="1"/>
+                        <t t-foreach="o.time_sheet_lines" t-as="lane">
+                            <tr style="text_align:center;">
+                                <td>
+                                    <t t-esc="i"/>
+                                </td>
+                                <td>
+                                    <span t-field="lane.time_sheet_id"/>
+                                </td>
+                                <td>
+                                    <span t-field="lane.project_id"/>
+                                </td>
+                                <td>
+                                    <span t-field="lane.task_id"/>
+                                </td>
+                                <td>
+                                    <span t-field="lane.date"/>
+                                </td>
+                                <td>
+                                    <span t-field="lane.hours"/>
+                                </td>
+                            </tr>
+                            <t t-set="i" t-value="i+1"/>
+                        </t>
+                    </table>
+                </div>
+            </div>
+            </div>
+        </t>
+    </template>
+
+    <template id="reporting_app_template">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                ################CALLING ANOTHER TEMPLATE###############
+                <t t-call="reporting_app.call_reporting_report"/>
+            </t>
+        </t>
+    </template>
+</odoo>
+
+
+

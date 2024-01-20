@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_report_app_click,report.app.click,model_report_app_click,,1,1,1,1
+access_timesheet_report_lines,timesheet.report.lines,model_timesheet_report_lines,,1,1,1,1
+access_report_config,report.config,model_report_config,,1,1,1,1

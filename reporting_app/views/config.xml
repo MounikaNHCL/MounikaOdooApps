@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="report_confi_tree_view" model="ir.ui.view">
+        <field name="name">Category Tree</field>
+        <field name="model">report.config</field>
+        <field name="arch" type="xml">
+            <tree editable="bottom">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+    <record id="action_report_confi" model="ir.actions.act_window">
+        <field name="name">Category Configuration</field>
+        <field name="res_model">report.config</field>
+        <field name="view_mode">tree</field>
+        <field name="help" type="html">
+            <p>
+                Create New Record Here
+            </p>
+        </field>
+    </record>
+     <menuitem
+            id="menu_report_config_id"
+            name="Configuration" groups="reporting_app.group_reports_managers,reporting_app.group_reports_admins"
+            parent="reporting_app.menu_report_app_root"
+            sequence="2"/>
+    <menuitem
+            id="menu_config_id"
+            name="Category Configuration"
+            parent="reporting_app.menu_report_config_id"
+            action="action_report_confi"
+            sequence="1"/>
+</odoo>

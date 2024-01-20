@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_project_task_export,project.task.export,model_project_task_export,,1,1,1,1
+access_project_export_lines,project.export.lines,model_project_export_lines,,1,1,1,1
+access_accept_task_lines,accept.task.lines,model_accept_task_lines,,1,1,1,1

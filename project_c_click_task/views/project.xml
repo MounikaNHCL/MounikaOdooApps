@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="project_task_export_tree" model="ir.ui.view">
+        <field name="name">project.task.export.tree</field>
+        <field name="model">project.task.export</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="from_date"/>
+                <field name="to_date"/>
+            </tree>
+        </field>
+    </record>
+    <record id="view_project_task_export_form" model="ir.ui.view">
+        <field name="name">project.task.export.form</field>
+        <field name="model">project.task.export</field>
+        <field name="arch" type="xml">
+            <form string="String Project">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="from_date"/>
+                        </group>
+                        <group>
+                            <field name="to_date"/>
+                        </group>
+                    </group>
+                </sheet>
+                <footer>
+                    <button name="export_project_data" string="Export" type="object" class="btn-primary"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+    <record id="action_project_task_export" model="ir.actions.act_window">
+        <field name="name">Project Export</field>
+        <field name="res_model">project.task.export</field>
+        <field name="context">{}</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+
+    <menuitem id="menu_project_task_export" name="Project Export" action="action_project_task_export"
+              groups="project.group_project_manager"
+              parent="project.menu_project_report"/>
+
+
+    <record id="project_task_view_click" model="ir.ui.view">
+        <field name="name">project.task.view.search.inherit.sale.timesheet.enterprise</field>
+        <field name="model">project.task</field>
+        <field name="inherit_id" ref="project.view_task_search_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//filter[@name='followed_by_me']" position='before'>
+                <filter string="In Progress" name="open_inprogress" domain="[('stage_id.name', '=', 'In Progress')]"/>
+                <filter string="Done" name="open_inprogress" domain="[('stage_id.name', '=', 'Done')]"/>
+                <filter string="To Do" name="open_inprogress" domain="[('stage_id.name', '=', 'To Do')]"/>
+            </xpath>
+        </field>
+    </record>
+    <record id="view_sale_project_inherit_form_click" model="ir.ui.view">
+        <field name="name">project.task.view.inherit</field>
+        <field name="model">project.task</field>
+        <field name="inherit_id" ref="project.view_task_form2"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook/page[@name='description_page']" position="before">
+                     <page string="Follwer Details">
+                            <field name="accept_task_lines" mode="tree">
+                                <tree string="Details" editable="bottom">
+                                    <field name="Follwer"/>
+                                    <field name="accept"/>
+                                </tree>
+                            </field>
+                        </page>
+            </xpath>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="project_task_type_default_stage">
+        <field name="name">project.task.type.default.stage</field>
+        <field name="model">project.task.type</field>
+        <field name="inherit_id" ref="project.task_type_edit"/>
+        <field name="arch" type="xml">
+            <field name="fold" position="after">
+                <field name="set_default"/>
+            </field>
+        </field>
+    </record>
+
+</odoo>

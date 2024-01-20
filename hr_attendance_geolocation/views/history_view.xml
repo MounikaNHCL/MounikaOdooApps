@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="segment_master_tree_view" model="ir.ui.view">
+        <field name="name">Checkin Out Tree</field>
+        <field name="model">checkin.out.history</field>
+        <field name="arch" type="xml">
+            <tree editable="bottom">
+                <field name="employee_id"/>
+                <field name="checkin"/>
+                <field name="check_in_city"/>
+<!--                <field name="check_in_state"/>-->
+<!--                <field name="check_in_zipcode"/>-->
+<!--                <field name="check_out"/>-->
+<!--                <field name="check_out_city"/>-->
+<!--                <field name="check_out_state"/>-->
+<!--                <field name="check_out_zipcode"/>-->
+            </tree>
+        </field>
+    </record>
+    <record id="action_checkin_out_history" model="ir.actions.act_window">
+        <field name="name">Checkin Out Action</field>
+        <field name="res_model">checkin.out.history</field>
+        <field name="view_mode">tree</field>
+        <field name="help" type="html">
+            <p>
+                Create New Record Here
+            </p>
+        </field>
+    </record>
+</odoo>

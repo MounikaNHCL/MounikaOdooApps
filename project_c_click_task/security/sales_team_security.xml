@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="inherited_project_tasks" model="ir.ui.view">
+        <field name="name">project.task_attendance_view</field>
+        <field name="model">project.task</field>
+        <field name="inherit_id" ref="project.view_task_form2"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='user_ids']" position="before">
+                <field name="user_group_id" invisible="1"/>
+            </xpath>
+            <field name="description" position="attributes">
+                <attribute name="attrs">{'readonly' : [('id','!=',False),('user_group_id','=',False)]}</attribute>
+            </field>
+            <!--            <field name="child_ids" position="attributes">-->
+            <!--                <attribute name="attrs">{'readonly' : [('user_group_id','=',False)]}</attribute>-->
+            <!--            </field>-->
+        </field>
+    </record>
+    <record id="own_project_task" model="ir.rule">
+        <field name="name">Personal Projcet Tasks</field>
+        <field ref="project.model_project_task" name="model_id"/>
+        <field name="domain_force">[('partner_id','=',user.partner_id.id)]</field>
+        <field name="groups" eval="[(4, ref('base.group_portal'))]"/>
+    </record>
+
+    <record id="own_project_project" model="ir.rule">
+        <field name="name">Personal Projcet Project</field>
+        <field ref="project.model_project_project" name="model_id"/>
+        <field name="domain_force">[('partner_id','=',user.partner_id.id)]</field>
+        <field name="groups" eval="[(4, ref('base.group_portal'))]"/>
+    </record>
+</odoo>
